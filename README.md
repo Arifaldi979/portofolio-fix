@@ -25,6 +25,7 @@ be hosted on GitHub Pages without any toolchain.
 │       ├── volunteer-canva.jpg          # Volunteer Educator Canva
 │       ├── volunteer-socialization.jpg  # Project Member and Socializations
 │       ├── project-titu.jpg             # TITU app mockup
+│       ├── project-parking.jpg          # Parking Booking Binus app mockup
 │       └── favicon.svg
 └── README.md
 ```
@@ -74,6 +75,5 @@ message pre-filled (`mailto:`). Swap in Formspree/EmailJS later if you want real
 - Colors: primary `#003dca`, alternating `#ffffff` / `#f8f9ff` sections, text `#0f162a`, muted `#465469`.
   All of them live as CSS custom properties in `assets/css/base.css`.
 - Fonts: Plus Jakarta Sans (headings), Inter (body), JetBrains Mono (labels and tags).
-- The *Parking Booking Binus* card uses a CSS-drawn cover because the design file had no screenshot for it.
-  To use a real image, drop it in `assets/img/project-parking.jpg` and replace the
-  `.project-media-art` block in `index.html` with an `<img>` tag like the TITU card.
+- Both project covers are exported from the same region of the design mockup (578 × 246 pt) and the
+  card media area uses that exact `aspect-ratio`, so the artwork is never cropped at any screen width.

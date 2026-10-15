@@ -239,8 +239,10 @@
   box-shadow: var(--shadow-lg);
 }
 
+/* same proportion as the media area in the design mockup (578 x 246 pt),
+   so the exported artwork fits with no cropping at any card width */
 .project-media {
-  height: 250px;
+  aspect-ratio: 578 / 246;
   overflow: hidden;
   background: var(--bg-alt);
   border-bottom: 1px solid var(--border);
@@ -271,76 +273,6 @@
   justify-content: flex-end;
   padding: 14px 22px 18px;
   border-top: 1px solid var(--border);
-}
-
-/* CSS artwork used as the cover of the parking project ------- */
-.project-media-art {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #003dca 0%, #0a5bd8 55%, #1d7ae8 100%);
-}
-
-.art-parking {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  color: #fff;
-}
-.art-parking::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(130% 110% at 50% 50%, #000 35%, transparent 100%);
-  -webkit-mask-image: radial-gradient(130% 110% at 50% 50%, #000 35%, transparent 100%);
-}
-
-.art-slots { display: flex; gap: 12px; z-index: 1; }
-.art-slots span {
-  width: 34px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 2px dashed rgba(255, 255, 255, 0.55);
-  border-radius: 6px;
-}
-.art-slots .art-slot-taken {
-  background: rgba(255, 255, 255, 0.92);
-  border-style: solid;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
-}
-
-.art-badge {
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: var(--radius-pill);
-  color: var(--primary);
-  font-family: var(--font-head);
-  font-size: 14px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
-}
-.art-badge svg { width: 17px; height: 17px; }
-
-.art-caption {
-  z-index: 1;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
 }
 
 /* =========================== CONTACT ======================= */
