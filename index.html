@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arifaldi Eka Putra — Information Systems Student @ BINUS</title>
+<meta name="description" content="Portfolio of Arifaldi Eka Putra, an Information Systems student at BINUS University. Web apps, cloud setups, UI/UX projects and more." />
+<meta name="author" content="Arifaldi Eka Putra" />
+
+<meta property="og:title" content="Arifaldi Eka Putra — Information Systems Student @ BINUS" />
+<meta property="og:description" content="Student portfolio: practical web apps, cloud setups and UI/UX case studies." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="assets/img/profile.jpg" />
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#hero">Skip to content</a>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a class="nav-brand" href="#hero">Arifaldi<span>.</span></a>
+    <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <a href="#contact" class="btn btn-primary btn-sm">Get in Touch</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="section hero" id="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="chip chip-hello">
+        <span class="chip-emoji">👋</span> Hi there! Student @ BINUS University
+        <span class="dot-live" aria-hidden="true"></span>
+      </span>
+
+      <h1 class="hero-title">Arifaldi eka putra</h1>
+      <p class="hero-subtitle">Information Systems Student @ BINUS • Tech Enthusiast</p>
+
+      <p class="hero-text">
+        Hey! I'm an undergraduate student majoring in Information Systems at BINUS University. I love
+        building practical web apps, tinkering with cloud setups, and figuring out how databases work
+        under the hood. Currently looking for summer internships and cool collaborative projects!
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">Explore My Projects <span class="btn-emoji">🚀</span></a>
+        <a href="#contact" class="btn btn-outline">Let's Chat / Connect <span class="btn-emoji">☕</span></a>
+      </div>
+
+      <div class="pill-row">
+        <span class="pill"><span class="pill-emoji">📍</span>Jakarta, Indonesia</span>
+        <span class="pill pill-blue"><span class="pill-emoji">🎓</span>Class of 2026</span>
+        <span class="pill pill-green"><span class="dot-live dot-green" aria-hidden="true"></span>Open to Internships</span>
+      </div>
+
+      <div class="find-me">
+        <span class="mono-label">Find me online:</span>
+        <a class="social-link" href="https://www.linkedin.com/in/arifaldiputra/" target="_blank" rel="noopener noreferrer">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="social-link" href="https://github.com/Arifaldi979" target="_blank" rel="noopener noreferrer">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap reveal reveal-delay-1">
+      <figure class="photo-card">
+        <img src="assets/img/profile.jpg" alt="Portrait of Arifaldi Eka Putra" width="900" height="900" />
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section about" id="about">
+  <div class="container">
+    <p class="mono-label label-blue reveal">Who I am &amp; what I do</p>
+    <h2 class="section-title reveal">A Little About Me</h2>
+
+    <p class="section-lead reveal">
+      I started diving into code during my freshman year at BINUS, and I've been hooked on solving real-world
+      campus and business problems ever since. When I'm not in class or helping out as a lab teaching assistant,
+      you'll usually find me exploring new web frameworks, participating in campus competitions &amp; student
+      contests, or learning modern system architectures.
+    </p>
+
+    <div class="pill-row reveal">
+      <span class="pill"><span class="pill-emoji">⚡</span>Currently learning Docker &amp; Next.js</span>
+      <span class="pill pill-blue"><span class="pill-emoji">🎮</span>Passionate about tech &amp; clean UI</span>
+    </div>
+
+    <div class="skill-grid">
+      <article class="card skill-card reveal">
+        <span class="icon-tile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>
+        </span>
+        <h3>Enterprise &amp; Systems</h3>
+        <p>BPMN modeling, business processes, system analysis &amp; design fundamentals.</p>
+      </article>
+
+      <article class="card skill-card reveal reveal-delay-1">
+        <span class="icon-tile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </span>
+        <h3>Web &amp; Frontend</h3>
+        <p>React, Tailwind CSS, JavaScript / TypeScript, responsive web design.</p>
+      </article>
+
+      <article class="card skill-card reveal reveal-delay-2">
+        <span class="icon-tile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </span>
+        <h3>Backend &amp; Database</h3>
+        <p>MySQL and REST APIs.</p>
+      </article>
+
+      <article class="card skill-card reveal reveal-delay-3">
+        <span class="icon-tile">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </span>
+        <h3>Tools &amp; Workflow</h3>
+        <p>Git &amp; GitHub.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="section experience" id="experience">
+  <div class="container">
+    <p class="mono-label label-blue reveal">Student life &amp; milestones</p>
+    <h2 class="section-title reveal">Campus Journey &amp; Experience</h2>
+    <p class="section-sub reveal">Blending rigorous university coursework with hands-on lab mentoring and active student organization teamwork.</p>
+
+    <div class="exp-grid">
+      <!-- Volunteer & Experience -->
+      <div class="exp-col">
+        <h3 class="col-heading reveal">
+          <svg class="ico ico-blue" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Volunteer &amp; Experience
+        </h3>
+
+        <article class="card exp-card reveal">
+          <img class="exp-thumb" src="assets/img/volunteer-canva.jpg" alt="Teaching local students digital design with Canva" width="1280" height="960" loading="lazy" />
+          <div class="exp-body">
+            <h4>Volunteer Educator Canva</h4>
+            <p>Educated local students on digital design fundamentals using Canva, guiding them through hands-on creative workshops to foster digital literacy and visual creativity.</p>
+          </div>
+        </article>
+
+        <article class="card exp-card reveal reveal-delay-1">
+          <img class="exp-thumb exp-thumb-tall" src="assets/img/volunteer-socialization.jpg" alt="Student volunteer team at a community outreach program" width="900" height="1200" loading="lazy" />
+          <div class="exp-body">
+            <h4>Project Member and Socializations</h4>
+            <p>Collaborated with a student volunteer team to conduct a community outreach program on clean water availability, raising local awareness and promoting sustainable water management practices.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Education & Highlights -->
+      <div class="exp-col">
+        <h3 class="col-heading reveal">
+          <svg class="ico ico-blue" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 2.6 9 2.6 12 0v-5"/></svg>
+          Education &amp; Highlights
+        </h3>
+
+        <article class="card edu-card reveal">
+          <div class="edu-head">
+            <div>
+              <h4>BINUS University</h4>
+              <p class="edu-degree">Undergraduate Student of Information Systems (S.Kom)</p>
+            </div>
+            <span class="badge badge-green">Expected Grad 2028</span>
+          </div>
+
+          <div class="edu-stats">
+            <div class="stat-box">
+              <span class="mono-label">Current GPA</span>
+              <strong class="stat-value">3.55 / 4.00</strong>
+            </div>
+            <div class="stat-box">
+              <span class="mono-label">Study Track</span>
+              <strong class="stat-value stat-blue">Cloud Computing</strong>
+            </div>
+          </div>
+
+          <p class="mono-label edu-activities-label">Key activities</p>
+          <ul class="activity-list">
+            <li>Hackathon Participant &amp; Project Builder</li>
+            <li>Tech Community Volunteer</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="section projects" id="projects">
+  <div class="container">
+    <p class="mono-label label-blue reveal">Student builds &amp; demos</p>
+    <h2 class="section-title reveal">Things I've Built</h2>
+    <p class="section-sub reveal">A mix of university capstone coursework, hackathon submissions, and personal weekend builds.</p>
+
+    <div class="project-grid">
+      <!-- TITU -->
+      <article class="card project-card reveal">
+        <div class="project-media">
+          <img src="assets/img/project-titu.jpg" alt="TITU public transit app screens: emission tracking, daily check-in and gamified city map" width="1440" height="613" loading="lazy" />
+        </div>
+        <div class="project-body">
+          <span class="badge badge-blue"><span class="pill-emoji">🏆</span>UI/UX Competition</span>
+          <h3>TITU - Public Transit App</h3>
+          <p>A UI/UX design competition project where I took primary responsibility for conducting in-depth user research and designing the core gamification mechanics. Translated commuter pain points into reward loops and interactive user journeys to boost daily public transit engagement.</p>
+          <div class="tag-row">
+            <span class="tag">Figma</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">Research</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <a class="demo-link" href="https://www.figma.com/proto/fphDwGYDCPxiy3lWLIZRhI/Lomba-UI-UX-IOFEST---Niat-Dulu?page-id=0%3A1&amp;node-id=325-50&amp;m=draw&amp;scaling=min-zoom&amp;content-scaling=fixed&amp;starting-point-node-id=322%3A21&amp;show-proto-sidebar=1" target="_blank" rel="noopener noreferrer">
+            Live Demo
+            <svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- Parking Booking Binus -->
+      <article class="card project-card reveal reveal-delay-1">
+        <div class="project-media project-media-art">
+          <div class="art-parking" aria-hidden="true">
+            <div class="art-slots">
+              <span></span><span></span><span class="art-slot-taken"></span><span></span>
+            </div>
+            <div class="art-badge">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14h1M17 20h4M14 20h1"/></svg>
+              <strong>Scan &amp; Park</strong>
+            </div>
+            <p class="art-caption">Real-time slot availability</p>
+          </div>
+        </div>
+        <div class="project-body">
+          <span class="badge badge-green"><span class="pill-emoji">🚀</span>Student Team Project</span>
+          <h3>Parking Booking Binus</h3>
+          <p>Built for a campus Project, Parking Booking Binus is a smart parking reservation system designed to solve campus parking bottlenecks. It allows students to check real-time parking slot availability, reserve a spot in advance, and seamlessly scan QR codes at the gate for fast entry and exit.</p>
+          <div class="tag-row">
+            <span class="tag">Figma</span>
+            <span class="tag">Design System</span>
+            <span class="tag">UI/UX</span>
+            <span class="tag">Interactive Design</span>
+          </div>
+        </div>
+        <div class="project-footer">
+          <a class="demo-link" href="https://www.figma.com/proto/IiEmzpHHMSlDLIdFBypQze/Parking-Booking-Binus?node-id=1-3&amp;m=draw&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=1%3A3&amp;page-id=0%3A1" target="_blank" rel="noopener noreferrer">
+            Live Demo
+            <svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <p class="mono-label label-blue reveal">Say hello! <span class="pill-emoji">👋</span></p>
+    <h2 class="section-title reveal">Let's Get in Touch!</h2>
+    <p class="section-sub reveal">Whether you have an internship opportunity, want to team up for a hackathon, or just want to chat about tech—my inbox is always open!</p>
+
+    <div class="contact-grid">
+      <!-- Info -->
+      <div class="contact-info">
+        <a class="info-card reveal" href="mailto:arifaldi.putra@binus.ac.id">
+          <span class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          </span>
+          <span class="info-text">
+            <span class="mono-label">Email me</span>
+            <strong>arifaldi.putra@binus.ac.id</strong>
+          </span>
+        </a>
+
+        <a class="info-card reveal reveal-delay-1" href="https://www.linkedin.com/in/arifaldiputra/" target="_blank" rel="noopener noreferrer">
+          <span class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V9h4v1.5"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>
+          </span>
+          <span class="info-text">
+            <span class="mono-label">LinkedIn</span>
+            <strong class="link-blue">www.linkedin.com/in/arifaldiputra</strong>
+          </span>
+        </a>
+
+        <a class="info-card reveal reveal-delay-2" href="https://github.com/Arifaldi979" target="_blank" rel="noopener noreferrer">
+          <span class="icon-tile">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </span>
+          <span class="info-text">
+            <span class="mono-label">GitHub</span>
+            <strong class="link-blue">github.com/Arifaldi979</strong>
+          </span>
+        </a>
+
+        <div class="info-card info-card-static reveal reveal-delay-3">
+          <span class="icon-tile icon-tile-rose">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </span>
+          <span class="info-text">
+            <span class="mono-label">Location &amp; availability</span>
+            <strong>BINUS Greater Jakarta • Open for On-site / Hybrid / Remote</strong>
+          </span>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="card form-card reveal reveal-delay-1">
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label class="mono-label" for="name">Your name <span class="req">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Alex Doe" required />
+            </div>
+            <div class="field">
+              <label class="mono-label" for="email">Your email <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="alex@example.com" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="mono-label" for="message">Message <span class="req">*</span></label>
+            <textarea id="message" name="message" rows="5" placeholder="What's on your mind? Got an internship, project idea, or just want to chat? Drop a note..." required></textarea>
+          </div>
+
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Send Friendly Message <span class="btn-emoji">🚀</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>Crafted with <span class="heart">💙</span> by a BINUSian. Open to internships &amp; junior roles.</p>
+    <a href="#hero" class="back-top">
+      Back to Top
+      <svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
