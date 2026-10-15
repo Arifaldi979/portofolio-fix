@@ -16,7 +16,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/styles.css" />
+
+<!-- stylesheets, in cascade order: tokens -> scaffolding -> primitives -> sections -> overrides -->
+<link rel="stylesheet" href="assets/css/base.css" />
+<link rel="stylesheet" href="assets/css/layout.css" />
+<link rel="stylesheet" href="assets/css/components.css" />
+<link rel="stylesheet" href="assets/css/sections.css" />
+<link rel="stylesheet" href="assets/css/responsive.css" />
 </head>
 <body>
 
@@ -378,6 +384,9 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js" defer></script>
+<!-- one script per behaviour, each self-contained -->
+<script src="assets/js/navbar.js" defer></script>
+<script src="assets/js/reveal.js" defer></script>
+<script src="assets/js/contact-form.js" defer></script>
 </body>
 </html>

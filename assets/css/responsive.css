@@ -1,0 +1,95 @@
+/* ============================================================
+   responsive.css — all media queries, loaded last so these
+   overrides always win over the base/layout/section rules
+   Breakpoints: 1080px (laptop) · 900px (tablet) · 560px (phone)
+   ============================================================ */
+
+/* ---------------------- laptop / small desktop ------------- */
+@media (max-width: 1080px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 44px;
+  }
+  .hero-title { font-size: 42px; }
+  .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------------------- tablet ----------------------------- */
+@media (max-width: 900px) {
+  .container { padding: 0 22px; }
+  .section { padding: 64px 0; }
+  .hero { padding: 72px 0 76px; }
+
+  /* single column everywhere */
+  .hero-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .exp-grid,
+  .project-grid,
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
+
+  /* portrait moves above the copy */
+  .hero-photo-wrap { order: -1; justify-content: flex-start; }
+  .photo-card { max-width: 230px; }
+
+  /* nav links collapse into a toggled dropdown */
+  .nav-brand { display: inline-flex; }
+  .nav-toggle { display: inline-flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px 22px 14px;
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow);
+  }
+  .nav-links.is-open { display: flex; }
+  .nav-links a { padding: 11px 0; border-bottom: 1px solid var(--border); }
+  .nav-links a:last-child { border-bottom: none; }
+  .nav-links a::after { display: none; }
+}
+
+/* ---------------------- phone ------------------------------ */
+@media (max-width: 560px) {
+  .hero-title { font-size: 34px; }
+  .hero-subtitle { font-size: 18px; }
+  .section-title { font-size: 25px; }
+
+  .skill-grid,
+  .form-row,
+  .edu-stats { grid-template-columns: minmax(0, 1fr); }
+
+  /* stacked volunteer cards with a full-width thumbnail */
+  .exp-card { flex-direction: column; }
+  .exp-thumb,
+  .exp-thumb-tall { width: 100%; aspect-ratio: 16 / 10; }
+
+  .edu-head { flex-direction: column; }
+
+  .btn { width: 100%; justify-content: center; }
+  .nav-right .btn { width: auto; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+
+  .project-media { height: 200px; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+
+/* ---------------------- reduced motion --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  /* never leave revealed content stuck at opacity 0 */
+  .reveal { opacity: 1; transform: none; }
+}

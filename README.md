@@ -8,18 +8,37 @@ be hosted on GitHub Pages without any toolchain.
 
 ```
 .
-├── index.html                      # single-page site (nav, hero, about, experience, projects, contact)
+├── index.html             # markup only — nav, hero, about, experience, projects, contact
 ├── assets
-│   ├── css/styles.css              # design tokens + all styling (responsive)
-│   ├── js/main.js                  # mobile nav, active link, scroll reveal, contact form
+│   ├── css
+│   │   ├── base.css        # design tokens, reset, global typography, a11y helpers
+│   │   ├── layout.css      # container, sections, navbar, footer
+│   │   ├── components.css  # reusable primitives: buttons, cards, pills, badges, form fields
+│   │   ├── sections.css    # composition of each section (hero, about, experience, …)
+│   │   └── responsive.css  # every media query, loaded last
+│   ├── js
+│   │   ├── navbar.js       # scroll shadow, mobile menu, active-link highlighting
+│   │   ├── reveal.js       # fade-in on scroll (IntersectionObserver)
+│   │   └── contact-form.js # validation + mailto handoff
 │   └── img
-│       ├── profile.jpg             # hero portrait
-│       ├── volunteer-canva.jpg     # Volunteer Educator Canva
+│       ├── profile.jpg                  # hero portrait
+│       ├── volunteer-canva.jpg          # Volunteer Educator Canva
 │       ├── volunteer-socialization.jpg  # Project Member and Socializations
-│       ├── project-titu.jpg        # TITU app mockup
+│       ├── project-titu.jpg             # TITU app mockup
 │       └── favicon.svg
 └── README.md
 ```
+
+**Why it is split this way**
+
+- **CSS** — one file per responsibility instead of one long stylesheet. They are linked in cascade
+  order (tokens → scaffolding → primitives → sections → overrides), so `responsive.css` always wins.
+  Change a colour once in `base.css` and it updates everywhere.
+- **JS** — one file per behaviour, each a self-contained IIFE loaded with `defer`. Plain scripts
+  (not ES modules) on purpose, so the page still works when opened straight from the filesystem.
+- **HTML** — intentionally one file. Splitting it would need either a build step or JS templating,
+  which would cost SEO and break the page without JavaScript. Sections are marked with comment
+  banners (`<!-- ===== PROJECTS ===== -->`) so they are easy to find.
 
 All photos were extracted from the design file and optimised (resized + progressive JPEG).
 
@@ -53,6 +72,7 @@ message pre-filled (`mailto:`). Swap in Formspree/EmailJS later if you want real
 ## Design notes
 
 - Colors: primary `#003dca`, alternating `#ffffff` / `#f8f9ff` sections, text `#0f162a`, muted `#465469`.
+  All of them live as CSS custom properties in `assets/css/base.css`.
 - Fonts: Plus Jakarta Sans (headings), Inter (body), JetBrains Mono (labels and tags).
 - The *Parking Booking Binus* card uses a CSS-drawn cover because the design file had no screenshot for it.
   To use a real image, drop it in `assets/img/project-parking.jpg` and replace the

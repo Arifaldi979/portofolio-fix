@@ -1,0 +1,135 @@
+/* ============================================================
+   base.css — design tokens, reset, global typography, a11y
+   Values are taken from the original design mockup.
+   ============================================================ */
+
+:root {
+  /* brand */
+  --primary: #003dca;
+  --primary-hover: #0033a8;
+  --primary-soft: #eff6ff;
+  --primary-border: #d5e3ff;
+  --primary-ring: rgba(0, 61, 202, 0.18);
+
+  /* surfaces */
+  --bg: #ffffff;
+  --bg-alt: #f8f9ff;
+  --surface: #f8f9fb;
+
+  /* text */
+  --text: #0f162a;
+  --text-soft: #1e2538;
+  --muted: #465469;
+  --muted-light: #6b7689;
+
+  /* lines */
+  --border: #e3e6ef;
+  --border-strong: #d8dbe4;
+  --border-hover: #cfd9f2;
+
+  /* status */
+  --green: #0f7b4f;
+  --green-dot: #16a34a;
+  --green-soft: #ecfdf5;
+  --green-border: #b6e7cf;
+  --rose: #e11d48;
+  --rose-soft: #fff1f2;
+  --rose-border: #ffd9de;
+
+  /* radii */
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* elevation */
+  --shadow-sm: 0 1px 2px rgba(15, 22, 42, 0.05);
+  --shadow: 0 4px 16px rgba(15, 22, 42, 0.06);
+  --shadow-lg: 0 18px 40px rgba(15, 22, 42, 0.1);
+
+  /* type */
+  --font-head: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji",
+    "Twemoji Mozilla", sans-serif;
+
+  /* metrics */
+  --container: 1216px;
+  --nav-h: 65px;
+}
+
+/* ---------- reset ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- headings ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.2;
+  letter-spacing: -0.012em;
+  word-spacing: 0.06em;
+}
+
+/* emoji glyphs keep their own colour-emoji font instead of the text fonts */
+.chip-emoji,
+.pill-emoji,
+.btn-emoji,
+.heart {
+  font-family: var(--font-emoji);
+  font-style: normal;
+}
+
+::selection { background: var(--primary); color: #fff; }
+
+/* ---------- accessibility ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus { left: 0; }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
