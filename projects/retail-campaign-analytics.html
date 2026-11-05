@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Retail Campaign Analytics Dashboard — Case Study | Arifaldi Eka Putra</title>
+<meta name="description" content="Case study: cleaning, modelling and visualising the dunnhumby Complete Journey retail dataset in Excel, Power Query and Power Pivot — 8-table data model, DAX measures and an interactive campaign dashboard." />
+<meta name="author" content="Arifaldi Eka Putra" />
+
+<meta property="og:title" content="Retail Campaign Analytics Dashboard — Case Study" />
+<meta property="og:description" content="An 8-table Power Pivot data model and interactive dashboard over 2,318 coupon redemptions from the dunnhumby Complete Journey dataset." />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="../assets/img/project-retail-analytics.jpg" />
+
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="../assets/css/base.css" />
+<link rel="stylesheet" href="../assets/css/layout.css" />
+<link rel="stylesheet" href="../assets/css/components.css" />
+<link rel="stylesheet" href="../assets/css/sections.css" />
+<link rel="stylesheet" href="../assets/css/case-study.css" />
+<link rel="stylesheet" href="../assets/css/responsive.css" />
+</head>
+<body>
+
+<!-- ================= TOP BAR ================= -->
+<header class="cs-topbar">
+  <div class="container cs-topbar-inner">
+    <a class="cs-back" href="../index.html#projects">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+      Back to portfolio
+    </a>
+    <a class="btn btn-primary btn-sm" href="../index.html#contact">Get in Touch</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ================= HEADER ================= -->
+<header class="cs-header">
+  <div class="container cs-narrow">
+    <p class="mono-label label-blue">Data analytics &amp; modeling case study</p>
+    <h1 class="cs-title">Retail Campaign Analytics Dashboard</h1>
+    <p class="cs-lead">
+      A retailer runs hundreds of coupon campaigns but has no single view of which ones actually pay off.
+      Working from the raw <em>dunnhumby — The Complete Journey</em> export, I cleaned and reshaped the data,
+      built an eight-table relational model in Power Pivot, and delivered a one-page dashboard that answers
+      which campaign types, months and customer segments drive coupon redemptions.
+    </p>
+
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="mono-label">Context</span>
+        <strong>Data Modeling Lab — BINUS</strong>
+      </div>
+      <div class="cs-meta-item">
+        <span class="mono-label">Team</span>
+        <strong>3 students</strong>
+      </div>
+      <div class="cs-meta-item">
+        <span class="mono-label">Period</span>
+        <strong>Even semester 2025 / 2026</strong>
+      </div>
+      <div class="cs-meta-item">
+        <span class="mono-label">Stack</span>
+        <strong>Excel · Power Query · Power Pivot · DAX</strong>
+      </div>
+      <div class="cs-meta-item">
+        <span class="mono-label">Dataset</span>
+        <strong>dunnhumby Complete Journey</strong>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="cs-body">
+  <div class="container cs-narrow">
+
+    <!-- ---------- headline numbers ---------- -->
+    <div class="kpi-grid">
+      <div class="kpi">
+        <span class="kpi-value">2,318</span>
+        <span class="kpi-label">coupon redemptions analysed</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-value">8</span>
+        <span class="kpi-label">tables joined in the data model</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-value">77%</span>
+        <span class="kpi-label">of redemptions from one campaign type</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-value">4,386</span>
+        <span class="kpi-label">customers needed to hit the profit target</span>
+      </div>
+    </div>
+
+    <!-- ---------- 1. data prep ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">01</span>Cleaning the raw export</h2>
+      <p>
+        The source files are flat CSV exports — household demographics, campaign descriptions, coupons,
+        redemptions and transactions. Three fields blocked analysis straight away: inconsistent product
+        department labels, dates stored as plain integers, and redemption times stored as integers such as
+        <code>1430</code>. Each was fixed with a column formula, then flattened with <em>Paste as Values</em>
+        so the model would not carry live formula dependencies into Power Pivot.
+      </p>
+
+      <h3 class="cs-h3">Normalising department labels</h3>
+      <code class="code">=PROPER(TRIM([@DEPARTMENT]))</code>
+      <p>
+        <code>TRIM()</code> removes leading, trailing and doubled spaces; <code>PROPER()</code> forces a
+        consistent Title Case. Without this the same department appears as several distinct values and
+        splits every aggregation.
+      </p>
+
+      <h3 class="cs-h3">Turning the integer day counter into real dates</h3>
+      <code class="code">=DATE(2023,1,1)+[@DAY]-1</code>
+      <p>
+        The dataset counts days from the start of the observation window rather than storing calendar dates.
+        Anchoring day 1 to a base date produces a usable date column, which became the time axis for the
+        monthly trend chart and allowed <em>Group by Months</em> in the pivot tables.
+      </p>
+
+      <h3 class="cs-h3">Parsing redemption time</h3>
+      <code class="code">=TIME(INT([@[REDEMPT_TIME_RAW]]/100), MOD([@[REDEMPT_TIME_RAW]],100), 0)</code>
+      <p>
+        Integer division by 100 extracts the hour and the modulo gives the minutes, so <code>1430</code>
+        becomes a real <code>14:30:00</code> time value that can be formatted and compared.
+      </p>
+
+      <h3 class="cs-h3">Making the sheet maintainable</h3>
+      <ul class="cs-list">
+        <li>Converted the demographics sheet into a proper Excel Table, <strong>tbl_Demographics</strong>, so formulas use structured references like <code>[@INCOME_DESC]</code> instead of cell coordinates and new rows inherit formatting and formulas automatically.</li>
+        <li>Defined two named ranges — <strong>Age_Group_Data</strong> and <strong>Income_Class_Map</strong> — so lookup formulas read as plain English and are auditable by a reviewer.</li>
+      </ul>
+    </section>
+
+    <!-- ---------- 2. feature engineering ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">02</span>Deriving the analysis dimensions</h2>
+      <p>
+        The raw demographics table has no column you can segment a campaign by, so I derived two:
+        a marketing segment and an economic class. These became the two slicers that drive the whole dashboard.
+      </p>
+
+      <h3 class="cs-h3">Target_Marketing_Segment</h3>
+      <code class="code">=IF(AND([@HOMEOWNER_DESC]="Homeowner", [@KID_CATEGORY_DESC]&lt;&gt;"None"),
+   "Priority Family", "Standard")</code>
+      <p>
+        A household that both owns its home and has at least one child is flagged
+        <strong>Priority Family</strong> — the group worth paying more to acquire. Everything else is
+        <strong>Standard</strong>.
+      </p>
+
+      <h3 class="cs-h3">Economic_Status</h3>
+      <code class="code">=VLOOKUP([@INCOME_DESC], Income_Class_Map, 2, FALSE)</code>
+      <p>
+        Income is stored as text bands, so a reference table maps each band to Low / Medium / High.
+        Using a lookup against a named range rather than nested <code>IF</code>s means a new income band
+        only needs a new row in the reference table — the formula never changes. The exact-match flag
+        deliberately surfaces <code>#N/A</code> instead of silently misclassifying an unmapped band.
+      </p>
+    </section>
+
+    <!-- ---------- 3. data model ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">03</span>The data model</h2>
+      <p>
+        With the tables cleaned, I loaded them into the Power Pivot data model and wired up relationships
+        in Diagram View: product and coupon on <code>PRODUCT_ID</code>, coupons to redemptions on
+        <code>COUPON_UPC</code>, campaigns to redemptions on <code>CAMPAIGN</code>, and transactions and
+        redemptions to households on <code>household_key</code>. Modelling it once this way means a slicer
+        on a demographic attribute correctly filters campaign and redemption measures without a single
+        lookup formula.
+      </p>
+
+      <figure class="figure">
+        <img src="../assets/img/datamodel-powerpivot.png" alt="Power Pivot Diagram View showing eight related tables: product, coupon, transaction_data, causal_data, campaign_table, campaign_desc, coupon_redempt and hh_demographic" width="1050" height="606" loading="lazy" />
+        <figcaption>Power Pivot data model — 8 tables and their relationships</figcaption>
+      </figure>
+
+      <h3 class="cs-h3">DAX measures</h3>
+      <code class="code">Total_Redemptions   := COUNTA(coupon_redempt[COUPON_UPC])
+Total_Products      := COUNT(product[PRODUCT_ID])
+Total_Populasi_Valid := DISTINCTCOUNT('hh_demographic'[household_key])</code>
+      <p>
+        The third measure matters more than it looks: counting rows would inflate the population because
+        of duplicate household rows, so a distinct count of <code>household_key</code> is the only honest
+        denominator for any per-customer rate.
+      </p>
+
+      <h3 class="cs-h3">KPI cells outside a pivot table</h3>
+      <code class="code">=CUBEVALUE("ThisWorkbookDataModel", "[Measures].[Total_Redemptions]")</code>
+      <p>
+        Cube functions pull a measure straight from the model into any cell, which let me lay out the
+        summary KPIs freely instead of being constrained by pivot table shape.
+      </p>
+    </section>
+
+    <!-- ---------- 4. findings ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">04</span>What the data showed</h2>
+
+      <h3 class="cs-h3">One campaign type carries almost everything</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Campaign type</th><th class="num">Redemptions</th><th class="num">Share</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Type A</td><td class="num">1,791</td><td class="num">77%</td></tr>
+            <tr><td>Type B</td><td class="num">454</td><td class="num">20%</td></tr>
+            <tr><td>Type C</td><td class="num">73</td><td class="num">3%</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td>Total</td><td class="num">2,318</td><td class="num">100%</td></tr>
+          </tfoot>
+        </table>
+      </div>
+      <p>
+        Type A generates more than three quarters of all redemptions. Type C returns 3% and is the first
+        candidate to cut or redesign — its format simply does not land with the audience.
+      </p>
+
+      <h3 class="cs-h3">Redemptions are strongly seasonal</h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Month</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Apr</th><th class="num">May</th><th class="num">Jun</th><th class="num">Jul</th><th class="num">Aug</th><th class="num">Sep</th><th class="num">Oct</th><th class="num">Nov</th><th class="num">Dec</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Redemptions</td><td class="num">22</td><td class="num">175</td><td class="num">212</td><td class="num">68</td><td class="num">333</td><td class="num">302</td><td class="num">72</td><td class="num">531</td><td class="num">327</td><td class="num">124</td><td class="num">108</td><td class="num">44</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        August alone accounts for <strong>531 redemptions — 23% of the year</strong>, with a secondary
+        May–June peak, while January, April, July and December barely move. Campaign spend is worth
+        concentrating around the peaks rather than spreading it evenly.
+      </p>
+
+      <h3 class="cs-h3">More coupon variants did not mean more redemptions</h3>
+      <p>
+        A scatter plot of coupon variety against total redemptions per campaign came out flat and very
+        slightly negative. Campaigns offering an excessive number of coupon variations did not outperform
+        focused ones — evidence against the assumption that more choice drives more engagement.
+      </p>
+
+      <h3 class="cs-h3">The demographic data itself has a gap</h3>
+      <p>
+        Splitting redemptions by economic class showed the Medium and Low classes dominating — but also a
+        substantial blank segment, meaning a real share of redeeming households have no demographic profile
+        attached. Any segment-level conclusion has to be read with that coverage gap in mind, and closing it
+        is a prerequisite for trustworthy targeting.
+      </p>
+
+      <div class="callout">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <p>
+          Reporting the blank segment rather than filtering it out was a deliberate choice — a dashboard
+          that hides missing data makes a data quality problem invisible to the people who can fix it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ---------- 5. what-if ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">05</span>Stress-testing the profit target</h2>
+      <p>
+        The baseline mass campaign converts at a <strong>3% redemption rate</strong> for an estimated
+        <strong>$925</strong> net profit. Management wanted to know what it takes to reach <strong>$2,000</strong>.
+        Holding the conversion rate and average basket constant, Goal Seek solves for the only free variable,
+        the number of customers reached.
+      </p>
+      <p>
+        The answer: <strong>4,386 customers</strong> — close to double the current base. That reframes the
+        request. The new target is not reachable by squeezing the existing audience; it requires an
+        acquisition push of nearly two thousand additional customers, which is a budget decision rather
+        than a campaign tweak.
+      </p>
+    </section>
+
+    <!-- ---------- 6. dashboard ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">06</span>The dashboard</h2>
+      <p>
+        Everything lands on a single sheet. Three pivot charts read from the data model and both slicers are
+        wired to every pivot table through Report Connections, so one click filters the entire page — for
+        example, only Priority Family households in the High economic class.
+      </p>
+
+      <figure class="figure">
+        <img src="../assets/img/dashboard-campaign.png" alt="Campaign Performance and Demographic Dashboard: bar chart of redemptions by campaign type, doughnut chart by economic status, monthly trend line chart, and Economic_Status and Target_Marketing_Segment slicers" width="1010" height="630" loading="lazy" />
+        <figcaption>Campaign Performance &amp; Demographic Dashboard</figcaption>
+      </figure>
+
+      <ul class="cs-list">
+        <li><strong>Bar chart</strong> — redemptions by campaign type, sorted largest to smallest so the best performer is always on top as the data changes.</li>
+        <li><strong>Doughnut chart</strong> — share of redemptions by economic class, including the unprofiled segment.</li>
+        <li><strong>Line chart</strong> — monthly trend, built on the derived date column and grouped by month to expose the seasonal peaks.</li>
+        <li><strong>Two slicers</strong> — Target_Marketing_Segment and Economic_Status, connected to every pivot table on the sheet.</li>
+        <li><strong>Estimated_Revenue</strong> — a calculated field projecting gross revenue from actual redemptions at an assumed $25 average spend, added without touching the raw data.</li>
+        <li><strong>Conditional formatting</strong> — colour scales across campaign ranges to make heavy and light usage readable at a glance.</li>
+      </ul>
+    </section>
+
+    <!-- ---------- 7. takeaways ---------- -->
+    <section class="cs-section">
+      <h2 class="cs-h2"><span class="cs-num">07</span>What I took from it</h2>
+      <ul class="cs-list">
+        <li><strong>Model first, chart later.</strong> Once the eight tables were related correctly, every question became a pivot rather than another lookup column.</li>
+        <li><strong>Pick the right denominator.</strong> A distinct count of households instead of a row count is the difference between a real rate and a flattering one.</li>
+        <li><strong>Readable beats clever.</strong> Named ranges and lookup tables made the workbook reviewable by teammates who did not write it.</li>
+        <li><strong>Report the gaps.</strong> The missing demographic profiles were a finding in their own right, not noise to be filtered away.</li>
+      </ul>
+
+      <div class="cs-cta">
+        <a class="btn btn-primary" href="https://www.kaggle.com/datasets/frtgnn/dunnhumby-the-complete-journey" target="_blank" rel="noopener noreferrer">
+          View the dataset
+          <svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a class="btn btn-outline" href="../index.html#projects">Back to all projects</a>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <p>Crafted with <span class="heart">💙</span> by a BINUSian. Open to internships &amp; junior roles.</p>
+    <a href="#" class="back-top">
+      Back to Top
+      <svg class="ico ico-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>

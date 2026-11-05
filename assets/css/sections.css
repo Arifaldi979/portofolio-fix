@@ -85,7 +85,7 @@
 
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(212px, 1fr));
   gap: 18px;
   margin-top: 34px;
 }
@@ -242,6 +242,7 @@
 /* same proportion as the media area in the design mockup (578 x 246 pt),
    so the exported artwork fits with no cropping at any card width */
 .project-media {
+  display: block;
   aspect-ratio: 578 / 246;
   overflow: hidden;
   background: var(--bg-alt);
@@ -271,8 +272,38 @@
 .project-footer {
   display: flex;
   justify-content: flex-end;
+  gap: 22px;
   padding: 14px 22px 18px;
   border-top: 1px solid var(--border);
+}
+.project-footer-multi { justify-content: space-between; }
+
+/* featured project: spans the grid and goes side-by-side on wide screens */
+.project-card-featured { grid-column: 1 / -1; }
+
+.project-main {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+.project-card-featured .project-body { flex: 1; }
+
+@media (min-width: 901px) {
+  .project-card-featured { flex-direction: row; align-items: stretch; }
+
+  .project-card-featured .project-media {
+    width: 46%;
+    flex: none;
+    aspect-ratio: auto;
+    border-bottom: none;
+    border-right: 1px solid var(--border);
+  }
+  /* show the whole dashboard rather than cropping it to the taller box;
+     the artwork already sits on --bg-alt so the letterboxing is invisible */
+  .project-card-featured .project-media img { object-fit: contain; }
+  .project-card-featured .project-body { padding: 24px 26px 4px; }
+  .project-card-featured .project-footer { padding: 14px 26px 20px; }
 }
 
 /* =========================== CONTACT ======================= */

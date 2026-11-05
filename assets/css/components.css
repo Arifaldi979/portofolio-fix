@@ -223,6 +223,7 @@
   transition: color 0.18s ease, gap 0.18s ease;
 }
 .demo-link:hover { color: var(--primary); gap: 9px; }
+.demo-link-primary { color: var(--primary); }
 
 .link-blue { color: var(--primary); }
 

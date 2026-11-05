@@ -26,9 +26,16 @@ be hosted on GitHub Pages without any toolchain.
 │       ├── volunteer-socialization.jpg  # Project Member and Socializations
 │       ├── project-titu.jpg             # TITU app mockup
 │       ├── project-parking.jpg          # Parking Booking Binus app mockup
+│       ├── project-retail-analytics.jpg # Retail analytics card cover
+│       ├── dashboard-campaign.png       # Excel dashboard figure
+│       ├── datamodel-powerpivot.png     # Power Pivot data model figure
 │       └── favicon.svg
+├── projects
+│   └── retail-campaign-analytics.html   # data analytics case study page
 └── README.md
 ```
+
+`assets/css/case-study.css` is loaded only by pages under `projects/`.
 
 **Why it is split this way**
 
