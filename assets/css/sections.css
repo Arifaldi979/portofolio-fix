@@ -32,6 +32,8 @@
   color: var(--primary);
   letter-spacing: -0.02em;
   margin-bottom: 18px;
+  /* keeps the two halves on even lines instead of orphaning the last word */
+  text-wrap: balance;
 }
 
 .hero-text {
